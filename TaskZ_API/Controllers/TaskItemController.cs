@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 
 using TaskZ_Application.Interfaces;
 using TaskZ_Core.Entities;
+using Factory = TaskZ_Application.Factories.GeneralEntityFactory;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,11 +26,11 @@ namespace TaskZ_API.Controllers
             _logger = logger;
         }
 
-       // GET: api/<TaskItemController>
+        // GET: api/<TaskItemController>
         [HttpGet]
         public async Task<IEnumerable<TaskItem>> GetAllTaskItems()
         {
-            IEnumerable<TaskItem> list = new List<TaskItem>();
+            IEnumerable<TaskItem> list = Factory.CreateNewTaskItemList();
             try
             {
                 //throw new ArgumentException("BOOM");
@@ -46,7 +47,16 @@ namespace TaskZ_API.Controllers
         [HttpGet("{id}")]
         public async Task<TaskItem> GetTaskItem(int id)
         {
-            return await _unitOfWork.TaskItems.GetByIdAsync(id);
+            TaskItem task = Factory.CreateNewTaskItem();
+            try
+            {
+                task = await _unitOfWork.TaskItems.GetByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Get all task items failed: {StackTrace}", ex.StackTrace);
+            }
+            return task;
         }
 
         // POST api/<TaskItemController>
