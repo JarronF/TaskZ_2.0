@@ -52,7 +52,20 @@ namespace TaskZ_DataAccess.Repositories
                 return result.ToList();
             }
         }
-        
+        public async Task<IEnumerable<TaskItem>> GetAllHighLevelTasksAsync()
+        {
+            string sql = @"SELECT   Id, ParentID, Title, ShortDescription, DueDate, 
+                                    MinutesSpent, MinutesEstimated, AssignedUserId
+                           FROM TaskItem
+                           WHERE ParentId IS NULL";
+
+            using (Connection)
+            {
+                var result = await Connection.QueryAsync<TaskItem>(sql);
+                return result.ToList();
+            }
+        }
+
         public async Task<TaskItem> GetByIdAsync(int id)
         {
             string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
@@ -63,6 +76,19 @@ namespace TaskZ_DataAccess.Repositories
             {
                 var result = await Connection.QueryFirstAsync<TaskItem>(sql, new { Id = id });
                 return result;
+            }
+        }
+
+        public async Task<IEnumerable<TaskItem>> GetChildTasksAsync(int parentId)
+        {
+            string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
+                                  MinutesSpent, MinutesEstimated, AssignedUserId 
+                           FROM TaskItem WHERE ParentId = @parentId";
+
+            using (Connection)
+            {
+                var result = await Connection.QueryAsync<TaskItem>(sql, new { ParentId = parentId });
+                return result.ToList();
             }
         }
 

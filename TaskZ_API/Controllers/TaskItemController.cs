@@ -13,7 +13,7 @@ using Factory = TaskZ_Application.Factories.GeneralEntityFactory;
 
 namespace TaskZ_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TaskItemController : ControllerBase
     {
@@ -28,23 +28,37 @@ namespace TaskZ_API.Controllers
 
         // GET: api/<TaskItemController>
         [HttpGet]
-        public async Task<IEnumerable<TaskItem>> GetAllTaskItems()
+        public async Task<IEnumerable<TaskItem>> GetAllHighLevelTaskItems()
         {
             IEnumerable<TaskItem> list = Factory.CreateNewTaskItemList();
             try
-            {
-                //throw new ArgumentException("BOOM");
-                list = await _unitOfWork.TaskItems.GetAllAsync();
+            {                
+                list = await _unitOfWork.TaskItems.GetAllHighLevelTasksAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Get all task items failed: {StackTrace}", ex.StackTrace);
+                _logger.LogError(ex, "Get high level tasks failed: {StackTrace}", ex.StackTrace);
+            }
+            return list;
+        }
+
+        [HttpGet("{parentId:int}")]        
+        public async Task<IEnumerable<TaskItem>> GetChildTasks(int parentId)
+        {            
+            IEnumerable<TaskItem> list = Factory.CreateNewTaskItemList();
+            try
+            {
+                list = await _unitOfWork.TaskItems.GetChildTasksAsync(parentId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Get child tasks failed: {StackTrace}", ex.StackTrace);
             }
             return list;
         }
 
         // GET api/<TaskItemController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<TaskItem> GetTaskItem(int id)
         {
             TaskItem task = Factory.CreateNewTaskItem();

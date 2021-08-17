@@ -9,5 +9,7 @@ namespace TaskZ_Application.Interfaces
 {
     public interface ITaskItemRepository: IGenericRepository<TaskItem>
     {
+        Task<IEnumerable<TaskItem>> GetAllHighLevelTasksAsync();
+        Task<IEnumerable<TaskItem>> GetChildTasksAsync(int parentId);
     }
 }
