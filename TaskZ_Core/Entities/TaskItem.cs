@@ -13,8 +13,8 @@ namespace TaskZ_Core.Entities
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public DateTime DueDate { get; set; }
-        public double? TimeSpent { get; set; }
-        public double? TimeEstimated { get; set; }
+        public int? MinutesSpent { get; set; }
+        public int? MinutesEstimated { get; set; }
         public int? AssignedUserId { get; set; }
         //public ApplicationUser AssignedUser { get; set; }
         public TaskItem Parent { get; set; }
