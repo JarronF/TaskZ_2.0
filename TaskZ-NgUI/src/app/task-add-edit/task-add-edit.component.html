@@ -1,0 +1,40 @@
+
+    <h1 *ngIf="isAddMode">Add Task</h1>
+    <h1 *ngIf="!isAddMode">Edit Task</h1>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-row">
+    <div class="form-group col-8"> 
+      <label for="title">Title: </label>
+      <input id="title" class="form-control" type="text" formControlName="title">
+    </div>
+    <div class="form-group col-2"> 
+      <label for="minutesEstimated">Estimated: </label>
+      <input id="minutesEstimated" class="form-control" type="number" formControlName="minutesEstimated" placeholder="(minutes)">
+    </div>
+    <div class="form-group col-2"> 
+      <label for="minutesSpent">Spent: </label>
+      <input id="minutesSpent" class="form-control" type="number" formControlName="minutesSpent" placeholder="(minutes)">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-10"> 
+      <label for="description">Description: </label>
+      <textarea id="description" class="form-control" formControlName="description" rows="3"></textarea>
+    </div>
+    <div class="form-group col-2"> 
+      <label for="dueDate">Due Date: </label>
+      <input id="dueDate" class="form-control" type="date" formControlName="dueDate">   
+  
+    </div> 
+    </div> 
+    <div class="form-row">
+    <div class="form-group col">
+      <p>Complete the form to enable button.</p>
+      <button type="submit" [disabled]="!taskForm.valid" class="btn btn-primary">Submit</button>
+      <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div> 
+  </div>   
+  </form>
+  <h3>Editing Task Id: {{taskId}} | {{isAddMode}}</h3>

@@ -1,0 +1,32 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Add !important to overwrite all elements */
+}
+#outer-container {
+  width: 100%;
+  text-align: center;
+}
+.container {
+  text-align: initial;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+nav a {
+  padding: 10px;
+  text-decoration: none;
+  margin: 10px 5px;
+  display: inline-block;
+  background-color: #e8e8e8;
+  color: #3d3d3d;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  color: white;
+  background-color: #42545c;
+}
+nav a.active {
+  background-color: black;
+}
