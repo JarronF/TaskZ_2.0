@@ -1,5 +1,5 @@
 <h1>Task Board</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Task</a>
+<a routerLink="/task/add" class="btn btn-sm btn-success mb-2">Add Task</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -10,8 +10,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let task of tasks">
-            <td>Title {{task.title}}</td>            
-            <td>Description {{task.shortDescription}}</td>
+            <td>{{task.title}}</td>            
+            <td>{{task.shortDescription}}</td>
             <td style="white-space: nowrap">
                 <a routerLink="/task/edit/{{task.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 <button (click)="deleteTask(task.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="task.isDeleting">

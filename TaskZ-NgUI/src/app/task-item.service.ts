@@ -17,4 +17,10 @@ export class TaskItemService {
     let url = this.taskItemsUrl + "/GetAllHighLevelTaskItems";
     return this.http.get<TaskItem[]>(url);    
   }
+  public getTaskById(id: string){
+    let url = this.taskItemsUrl + `/GetTaskItem/${id}`;
+    return this.http.get<TaskItem>(url);    
+  }
+
+
 }

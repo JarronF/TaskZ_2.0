@@ -3,7 +3,7 @@ export interface TaskItem{
     parentId: number;
     title: string;
     shortDescription: string;
-    dueDate: Date;
+    dueDate: string;
     minutesSpent: number;
     minutesEstimated: number;
     assignedUserId: number;

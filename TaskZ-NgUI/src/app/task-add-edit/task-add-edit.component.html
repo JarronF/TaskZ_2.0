@@ -6,7 +6,10 @@
   <div class="form-row">
     <div class="form-group col-8"> 
       <label for="title">Title: </label>
-      <input id="title" class="form-control" type="text" formControlName="title">
+      <input id="title" class="form-control" type="text" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+        <div *ngIf="f.title.errors.required">Title is required</div>
+      </div>
     </div>
     <div class="form-group col-2"> 
       <label for="minutesEstimated">Estimated: </label>
@@ -20,21 +23,21 @@
 
   <div class="form-row">
     <div class="form-group col-10"> 
-      <label for="description">Description: </label>
-      <textarea id="description" class="form-control" formControlName="description" rows="3"></textarea>
+      <label for="shortDescription">Description: </label>
+      <textarea id="shortDescription" class="form-control" formControlName="shortDescription" rows="3"></textarea>
     </div>
     <div class="form-group col-2"> 
       <label for="dueDate">Due Date: </label>
-      <input id="dueDate" class="form-control" type="date" formControlName="dueDate">   
-  
+      <input id="dueDate" class="form-control" type="date" formControlName="dueDate"[ngClass]="{ 'is-invalid': submitted && f.dueDate.errors }">   
+      <div *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+        <div *ngIf="f.dueDate.errors.required">Due date is required</div>
+      </div>
     </div> 
     </div> 
     <div class="form-row">
-    <div class="form-group col">
-      <p>Complete the form to enable button.</p>
-      <button type="submit" [disabled]="!taskForm.valid" class="btn btn-primary">Submit</button>
-      <a routerLink="/users" class="btn btn-link">Cancel</a>
+    <div class="form-group col">      
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a routerLink="/taskboard" class="btn btn-link">Cancel</a>
     </div> 
   </div>   
-  </form>
-  <h3>Editing Task Id: {{taskId}} | {{isAddMode}}</h3>
+  </form>  
