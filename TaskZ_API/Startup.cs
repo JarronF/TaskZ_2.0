@@ -21,13 +21,20 @@ namespace TaskZ_API
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
+        private readonly string corsPolicy = "corsPolicy";
+        public IConfiguration Configuration { get; }        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(corsPolicy,
+                    builder => builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader()
+                                      .AllowCredentials()
+                                      );
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +52,7 @@ namespace TaskZ_API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskZ_API v1"));
             }
-
+            app.UseCors(corsPolicy);
             app.UseHttpsRedirection();
 
             app.UseRouting();
