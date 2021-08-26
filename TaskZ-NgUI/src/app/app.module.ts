@@ -8,12 +8,13 @@ import { AppComponent } from './app.component';
 import { TaskBoardComponent } from './task-board/task-board.component';
 import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TaskListComponent } from './task-list/task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskBoardComponent,    
-    TaskAddEditComponent
+    TaskAddEditComponent, TaskListComponent
   ],
   imports: [
     BrowserModule,

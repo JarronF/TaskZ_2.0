@@ -1,8 +1,8 @@
 
-    <h1 *ngIf="isAddMode">Add Task</h1>
-    <h1 *ngIf="!isAddMode">Edit Task</h1>
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
 
+<form class="form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <h3 *ngIf="isAddMode">Add Task</h3>
+  <h3 *ngIf="!isAddMode">Edit Task</h3>
   <div class="form-row">
     <div class="form-group col-8"> 
       <label for="title">Title: </label>

@@ -1,0 +1,41 @@
+<table class="table table-striped">
+    <thead>
+        <tr class="table-dark text-dark text-center">
+            <th colspan="3">
+                <span *ngIf="parent;else topLevelTaskTemp">
+                    <span class="badge bg-sm bg-success text-light mr-1">Subtasks of </span>
+                    <h5>{{parent.title}}</h5>                     
+                </span>
+                <ng-template #topLevelTaskTemp>
+                    <h5>{{listTitle}}</h5>                    
+                </ng-template>
+                <button (click)="addTask(parent)" class="btn btn-sm btn-info">Add Task</button>
+            </th>                 
+        </tr>
+        <tr>
+            <th style="width: 30%">Title</th>
+            <th style="width: 60%">Description</th>            
+            <th style="width: 10%">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of taskList">
+            <td>{{task.title}}</td>            
+            <td>{{task.shortDescription}}</td>
+            <td style="white-space: nowrap">
+                <button (click)="selectSubTasks(task)" class="btn btn-sm btn-success mr-1">Subtasks</button>
+                <button (click)="editTask(task.id)" class="btn btn-sm btn-primary mr-1">Edit</button>
+                <button (click)="deleteTask(task.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="task.isDeleting">
+                    <span *ngIf="task.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!task.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!taskList">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

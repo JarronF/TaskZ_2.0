@@ -1,15 +1,8 @@
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  /* Add !important to overwrite all elements */
-}
 #outer-container {
   width: 100%;
   text-align: center;
 }
-.container {
-  text-align: initial;
-}
-
+/*
 h1 {
   margin-bottom: 0;
 }
@@ -30,3 +23,4 @@ nav a:hover {
 nav a.active {
   background-color: black;
 }
+*/

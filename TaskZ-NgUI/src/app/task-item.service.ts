@@ -7,6 +7,7 @@ import { TaskItem } from './_models/task-item';
   providedIn: 'root'
 })
 export class TaskItemService {
+
   private taskItemsUrl = 'https://localhost:44306/api/TaskItem';
   
   constructor(
@@ -22,5 +23,8 @@ export class TaskItemService {
     return this.http.get<TaskItem>(url);    
   }
 
-
+  public getChildTasks(id: number) {
+    let url = this.taskItemsUrl + `/GetChildTasks/${id}`;
+    return this.http.get<TaskItem[]>(url);    
+  }
 }
