@@ -1,3 +1,16 @@
 .table {
   margin-top: 1rem;
 }
+.task-list-header {
+  text-align: initial;
+  margin-top: 40px;
+}
+.table-sub-header {
+  text-align: initial;
+}
+
+/*
+.task-list-title {
+  text-align: center;
+}
+*/

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
 import { TaskItem } from '../_interfaces/_models/task-item';
 import { Router } from '@angular/router';
@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 export class TaskBoardComponent implements OnInit {
   public topLevelTasks?: TaskItem[];
   public childTaskList?: TaskItem[];
-  public parentTask?: TaskItem;
-
+  public parentTask?: TaskItem;    
+ 
   constructor(
     private taskItemService: MockTaskItemService,
-    private router: Router) { }
+    private router: Router
+    ) { 
+    }
   
   ngOnInit(): void {
     this.getParentTasks();
@@ -24,10 +26,10 @@ export class TaskBoardComponent implements OnInit {
     this.taskItemService.getAllHighLevelTasks()
         .subscribe(t => this.topLevelTasks = t);        
   }
-  getChildTasks(parent: TaskItem){
+  getChildTasks(parent: TaskItem){    
     this.parentTask = parent;
     this.taskItemService.getChildTasks(this.parentTask.id)
-        .subscribe(t => this.childTaskList = t);        
+        .subscribe(t => this.childTaskList = t);           
   }
 
   deleteTask(id: number){
@@ -46,5 +48,5 @@ export class TaskBoardComponent implements OnInit {
   editTask(id: number){    
     this.router.navigateByUrl(`task/edit/${id}`);
   }
-
+ 
 }

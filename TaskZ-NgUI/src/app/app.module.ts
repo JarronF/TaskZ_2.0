@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
   declarations: [
     AppComponent,
     TaskBoardComponent,    
-    TaskAddEditComponent, TaskListComponent
+    TaskAddEditComponent, 
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,7 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule
-  ],
+  ],  
   providers: [
     ...environment.providers,
 ],

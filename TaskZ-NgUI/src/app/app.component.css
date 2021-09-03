@@ -1,6 +1,11 @@
 #outer-container {
-  width: 100%;
-  text-align: center;
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+}
+.body-container {
+  width: 95%;
+  margin: auto;
 }
 /*
 h1 {

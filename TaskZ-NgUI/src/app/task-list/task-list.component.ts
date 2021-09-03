@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
 import { TaskItem } from '../_interfaces/_models/task-item';
+
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -11,8 +12,11 @@ export class TaskListComponent implements OnInit {
   @Input() childTaskList?: TaskItem[];
   @Input() listTitle?: string;
   @Input() parent?: TaskItem;
-  @Input() parentTitle?: string;
-  constructor(private taskItemService: MockTaskItemService) { }
+  @Input() parentTitle?: string;  
+
+  constructor(
+    private taskItemService: MockTaskItemService,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +25,6 @@ export class TaskListComponent implements OnInit {
   @Output() deleteTaskClick = new EventEmitter<number>();
   @Output() addTaskClick = new EventEmitter<TaskItem>();
   @Output() editTaskClick = new EventEmitter<number>();
-
   
   selectSubTasks(value: TaskItem) {
     this.selectSubTasksClick.emit(value);
@@ -35,4 +38,5 @@ export class TaskListComponent implements OnInit {
   editTask(value: number) {
     this.editTaskClick.emit(value);
   }
+
 }

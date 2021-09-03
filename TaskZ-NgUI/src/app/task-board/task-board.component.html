@@ -6,15 +6,16 @@
     (deleteTaskClick)="deleteTask($event)"
     (addTaskClick)="addTask($event)"
     (editTaskClick)="editTask($event)">
-</app-task-list>
-   
-<app-task-list *ngIf="parentTask"     
-    [taskList]="childTaskList" 
-    [parent]="parentTask"
-    [parentTitle]="parentTask.title" 
-    (selectSubTasksClick)="getChildTasks($event)" 
-    (deleteTaskClick)="deleteTask($event)"
-    (addTaskClick)="addTask($event)"
-    (editTaskClick)="editTask($event)">
-</app-task-list>
+</app-task-list>   
+
+  
+        <app-task-list *ngIf="parentTask"     
+            [taskList]="childTaskList" 
+            [parent]="parentTask"
+            [parentTitle]="parentTask.title" 
+            (selectSubTasksClick)="getChildTasks($event)" 
+            (deleteTaskClick)="deleteTask($event)"
+            (addTaskClick)="addTask($event)"
+            (editTaskClick)="editTask($event)">
+        </app-task-list>
 
