@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskItemService } from '../task-item.service';
-import { TaskItem } from '../_models/task-item';
+import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
+import { TaskItem } from '../_interfaces/_models/task-item';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class TaskBoardComponent implements OnInit {
   public parentTask?: TaskItem;
 
   constructor(
-    private taskItemService: TaskItemService,
+    private taskItemService: MockTaskItemService,
     private router: Router) { }
   
   ngOnInit(): void {

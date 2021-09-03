@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TaskItemService } from '../task-item.service';
+import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
 import { formatDate, DatePipe } from '@angular/common' 
-import { TaskItem } from '../_models/task-item';
+import { TaskItem } from '../_interfaces/_models/task-item';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./task-add-edit.component.css']
 })
 export class TaskAddEditComponent implements OnInit {
-  taskId: string = "";
+  taskId?: number;
   isAddMode: boolean = true;
   task?: TaskItem; 
   submitted = false;
@@ -33,11 +33,11 @@ export class TaskAddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private taskItemService: TaskItemService
+    private taskItemService: MockTaskItemService
     ) {     }
     
   ngOnInit(): void {
-    this.taskId = this.route.snapshot.params["id"];
+    this.taskId = Number(this.route.snapshot.params["id"]);
     this.isAddMode = ! this.taskId;
 
     if (this.isAddMode == false) {
@@ -45,7 +45,7 @@ export class TaskAddEditComponent implements OnInit {
     }        
   } 
 
-  getTaskById(id: string) {    
+  getTaskById(id: number) {    
     this.taskItemService.getTaskById(id)
         .pipe(first())        
         .subscribe(t => {

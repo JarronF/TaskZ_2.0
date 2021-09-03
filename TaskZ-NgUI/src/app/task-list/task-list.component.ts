@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TaskItemService } from '../task-item.service';
-import { TaskItem } from '../_models/task-item';
+import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
+import { TaskItem } from '../_interfaces/_models/task-item';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -12,7 +12,7 @@ export class TaskListComponent implements OnInit {
   @Input() listTitle?: string;
   @Input() parent?: TaskItem;
   @Input() parentTitle?: string;
-  constructor(private taskItemService: TaskItemService) { }
+  constructor(private taskItemService: MockTaskItemService) { }
 
   ngOnInit(): void {
   }

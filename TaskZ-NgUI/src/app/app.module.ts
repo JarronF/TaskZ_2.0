@@ -9,6 +9,7 @@ import { TaskBoardComponent } from './task-board/task-board.component';
 import { TaskAddEditComponent } from './task-add-edit/task-add-edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TaskListComponent } from './task-list/task-list.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { TaskListComponent } from './task-list/task-list.component';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    ...environment.providers,
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
