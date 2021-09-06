@@ -54,10 +54,13 @@ namespace TaskZ_DataAccess.Repositories
         }
         public async Task<IEnumerable<TaskItem>> GetAllHighLevelTasksAsync()
         {
-            string sql = @"SELECT   Id, ParentID, Title, ShortDescription, DueDate, 
-                                    MinutesSpent, MinutesEstimated, AssignedUserId
-                           FROM TaskItem
-                           WHERE ParentId IS NULL";
+            string sql = @"SELECT PT.Id, PT.ParentID, PT.Title, PT.ShortDescription, PT.DueDate, 
+                                  PT.MinutesSpent, PT.MinutesEstimated, PT.AssignedUserId, COUNT(CT.Id) AS SubtaskCount
+                            FROM  TaskItem PT LEFT JOIN TaskItem CT
+                                  ON PT.Id = CT.ParentID
+                                  WHERE PT.ParentId IS NULL
+                                  GROUP BY PT.Id, PT.ParentID, PT.Title, PT.ShortDescription, PT.DueDate, 
+                                           PT.MinutesSpent, PT.MinutesEstimated, PT.AssignedUserId";
 
             using (Connection)
             {

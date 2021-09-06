@@ -15,7 +15,8 @@ namespace TaskZ_Core.Entities
         public DateTime DueDate { get; set; }
         public int? MinutesSpent { get; set; }
         public int? MinutesEstimated { get; set; }
-        public int? AssignedUserId { get; set; }
+        public int? AssignedUserId { get; set; }        
+        public int SubtaskCount { get; set; }
         //public ApplicationUser AssignedUser { get; set; }
         public TaskItem Parent { get; set; }
         public ICollection<TaskItem> Children { get; set; }
