@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MockTaskItemService } from '../_services/_mocks/mock-task-item.service';
@@ -12,18 +12,21 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./task-add-edit.component.css']
 })
 export class TaskAddEditComponent implements OnInit {
+  parentId?: number;
   taskId?: number;
   isAddMode: boolean = true;
   task?: TaskItem; 
   submitted = false;
-  loading = false;
+  loading = false;  
+  parentTitle?: string;  
 
   taskForm = this.formBuilder.group({
     title: ["", Validators.required],
     shortDescription:  [""],
     dueDate: ["", Validators.required],
     minutesEstimated: [""],
-    minutesSpent: [""],   
+    minutesSpent: [""],
+    parent: this.route.snapshot.params["parentTitle"],   
   }); 
 
   // convenience getter for easy access to form fields
@@ -38,6 +41,8 @@ export class TaskAddEditComponent implements OnInit {
     
   ngOnInit(): void {
     this.taskId = Number(this.route.snapshot.params["id"]);
+    this.parentId = Number(this.route.snapshot.params["parentId"]);
+
     this.isAddMode = ! this.taskId;
 
     if (this.isAddMode == false) {
@@ -52,6 +57,7 @@ export class TaskAddEditComponent implements OnInit {
           this.task = t,
           this.task.dueDate = formatDate(t.dueDate, 'yyyy-MM-dd', 'en'),
           this.taskForm.patchValue(this.task)
+          
         });   
   }  
   onSubmit() {

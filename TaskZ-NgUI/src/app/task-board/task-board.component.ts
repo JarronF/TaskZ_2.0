@@ -38,7 +38,7 @@ export class TaskBoardComponent implements OnInit {
   addTask(parent?: TaskItem){
     this.parentTask = parent;
     if(this.parentTask){
-      console.log(`Task added - ${this.parentTask.id}`);
+      this.router.navigateByUrl(`task/add/${this.parentTask.id}/${this.parentTask.title}`);
     }
     else{
       this.router.navigateByUrl("task/add");

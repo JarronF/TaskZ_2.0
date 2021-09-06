@@ -21,12 +21,14 @@
             <td>{{task.title}}</td>            
             <td>{{task.shortDescription}}</td>
             <td style="white-space: nowrap">
-                <button (click)="selectSubTasks(task)" class="btn btn-sm btn-success mr-1">Subtasks</button>
+               
                 <button (click)="editTask(task.id)" class="btn btn-sm btn-primary mr-1">Edit</button>
-                <button (click)="deleteTask(task.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="task.isDeleting">
-                    <span *ngIf="task.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!task.isDeleting">Delete</span>
+                <button (click)="deleteTask(task.id)" class="btn btn-sm btn-danger btn-delete-user mr-1" [disabled]="isDeleting">
+                    <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!isDeleting">Delete</span>
                 </button>
+                <button *ngIf="task.subtaskCount == 0" (click)="addTask(task)" class="btn btn-sm btn-info">Add Subtask</button>
+                <button *ngIf="task.subtaskCount > 0" (click)="selectSubTasks(task)" class="btn btn-sm btn-success">Subtasks <span class="badge badge-light">{{task.subtaskCount}}</span></button>
             </td>
         </tr>
         <tr *ngIf="!taskList">

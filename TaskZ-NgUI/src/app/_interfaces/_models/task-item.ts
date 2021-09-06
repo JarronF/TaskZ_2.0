@@ -7,5 +7,5 @@ export interface TaskItem{
     minutesSpent: number;
     minutesEstimated: number;
     assignedUserId: number;
-    isDeleting: boolean;
+    subtaskCount: number;    
 }

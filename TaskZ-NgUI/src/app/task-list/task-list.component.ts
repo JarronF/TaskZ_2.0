@@ -13,6 +13,7 @@ export class TaskListComponent implements OnInit {
   @Input() listTitle?: string;
   @Input() parent?: TaskItem;
   @Input() parentTitle?: string;  
+  isDeleting: boolean = false;
 
   constructor(
     private taskItemService: MockTaskItemService,

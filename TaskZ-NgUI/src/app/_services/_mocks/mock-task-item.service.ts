@@ -18,7 +18,7 @@ export class MockTaskItemService  implements ITaskItemService {
       title: "Mock - Try to take over the world",
       shortDescription:"We need to attempt to control the entire world. Starting from A proceeding to Z",
       assignedUserId: 1,
-      isDeleting: false
+      subtaskCount: 2,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export class MockTaskItemService  implements ITaskItemService {
     title: "Find Pinky",
     shortDescription:"Pinky can do the hard work",
     assignedUserId: 2,
-    isDeleting: false
+    subtaskCount: 0,
 },
 {
   id: 3,
@@ -40,7 +40,7 @@ export class MockTaskItemService  implements ITaskItemService {
   title: "Find Brain",
   shortDescription:"Brain will control the operation",
   assignedUserId: 1,
-  isDeleting: false
+  subtaskCount: 1,
 },
 {
   id: 4,
@@ -50,8 +50,19 @@ export class MockTaskItemService  implements ITaskItemService {
   dueDate: "2021/09/22 9:00:00",
   title: "Mock - High Level Task 2",
   shortDescription:"Lorem ipsum dolores amet",
-  assignedUserId: 1,
-  isDeleting: false
+  assignedUserId: 2,
+  subtaskCount: 0,
+},
+{
+  id: 5,
+  parentId: 3,
+  minutesEstimated: 0,
+  minutesSpent: 0,
+  dueDate: "2022/02/12 9:00:00",
+  title: "Sub sub task of Find Brain",
+  shortDescription:"Lorem ipsum dolores amet",
+  assignedUserId: 2,
+  subtaskCount: 0,
 },
   ]
   
