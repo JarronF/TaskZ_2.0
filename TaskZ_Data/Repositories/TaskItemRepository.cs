@@ -10,26 +10,18 @@ using System.Threading.Tasks;
 
 using TaskZ_Application.Interfaces;
 using TaskZ_Core.Entities;
-using TaskZ_DataAccess.Utilities;
+using TaskZ_Data.Internal.DataAccess;
 
-namespace TaskZ_DataAccess.Repositories
+namespace TaskZ_Data.Repositories
 {
     //TODO: Make adhoc queries into stored procedures
     public class TaskItemRepository : ITaskItemRepository
     {
-        private readonly IConfiguration _config;
-        public TaskItemRepository(IConfiguration config)
+        private readonly ISqlDataAccess _data;
+        public TaskItemRepository(ISqlDataAccess data)
         {
-            _config = config;
+            _data = data;
         }
-        private IDbConnection Connection
-        {
-            get
-            {
-                return DatabaseHelper.GetConnection("TaskZ_Data", _config);
-            }
-        }
-
         public Task<int> AddAsync(TaskItem entity)
         {
             throw new NotImplementedException();
@@ -40,20 +32,17 @@ namespace TaskZ_DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TaskItem>> GetAllAsync()
+        public async Task<List<TaskItem>> GetAllAsync()
         {
             string sql = @"SELECT   Id, ParentID, Title, ShortDescription, DueDate, 
                                     MinutesSpent, MinutesEstimated, AssignedUserId
                            FROM TaskItem";
 
-            using (Connection)
-            {
-                var result = await Connection.QueryAsync<TaskItem>(sql);
-                return result.ToList();
-            }
+            var taskList = await _data.LoadDataBySql<TaskItem>(sql);
+            return taskList;
         }
         public async Task<IEnumerable<TaskItem>> GetAllHighLevelTasksAsync()
-        {
+        {            
             string sql = @"SELECT PT.Id, PT.ParentID, PT.Title, PT.ShortDescription, PT.DueDate, 
                                   PT.MinutesSpent, PT.MinutesEstimated, PT.AssignedUserId, COUNT(CT.Id) AS SubtaskCount
                             FROM  TaskItem PT LEFT JOIN TaskItem CT
@@ -61,38 +50,36 @@ namespace TaskZ_DataAccess.Repositories
                                   WHERE PT.ParentId IS NULL
                                   GROUP BY PT.Id, PT.ParentID, PT.Title, PT.ShortDescription, PT.DueDate, 
                                            PT.MinutesSpent, PT.MinutesEstimated, PT.AssignedUserId";
-
-            using (Connection)
-            {
-                var result = await Connection.QueryAsync<TaskItem>(sql);
-                return result.ToList();
-            }
+            
+            var taskList = await _data.LoadDataBySql<TaskItem>(sql);
+            return taskList;
         }
-
         public async Task<TaskItem> GetByIdAsync(int id)
         {
-            string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
-                                  MinutesSpent, MinutesEstimated, AssignedUserId 
-                           FROM TaskItem WHERE Id = @Id";
+            throw new NotImplementedException();
+            //string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
+            //                      MinutesSpent, MinutesEstimated, AssignedUserId 
+            //               FROM TaskItem WHERE Id = @Id";
 
-            using (Connection)
-            {
-                var result = await Connection.QueryFirstAsync<TaskItem>(sql, new { Id = id });
-                return result;
-            }
+            //using (Connection)
+            //{
+            //    var result = await Connection.QueryFirstAsync<TaskItem>(sql, new { Id = id });
+            //    return result;
+            //}
         }
 
         public async Task<IEnumerable<TaskItem>> GetChildTasksAsync(int parentId)
         {
-            string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
-                                  MinutesSpent, MinutesEstimated, AssignedUserId 
-                           FROM TaskItem WHERE ParentId = @parentId";
+            throw new NotImplementedException();
+            //string sql = @"SELECT Id, ParentID, Title, ShortDescription, DueDate, 
+            //                      MinutesSpent, MinutesEstimated, AssignedUserId 
+            //               FROM TaskItem WHERE ParentId = @parentId";
 
-            using (Connection)
-            {
-                var result = await Connection.QueryAsync<TaskItem>(sql, new { ParentId = parentId });
-                return result.ToList();
-            }
+            //using (Connection)
+            //{
+            //    var result = await Connection.QueryAsync<TaskItem>(sql, new { ParentId = parentId });
+            //    return result.ToList();
+            //}
         }
 
         public Task<int> UpdateAsync(TaskItem entity)

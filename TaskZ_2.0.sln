@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskZ_Core", "TaskZ_Core\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskZ_Application", "TaskZ_Application\TaskZ_Application.csproj", "{11FBBA5A-8907-4510-941F-D33AC7F11BCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskZ_DataAccess", "TaskZ_DataAccess\TaskZ_DataAccess.csproj", "{FE442A5A-B41F-4795-94F4-A9F33EC25D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskZ_Data", "TaskZ_Data\TaskZ_Data.csproj", "{D83CFC5F-297D-4441-8829-F0506EF7B737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{11FBBA5A-8907-4510-941F-D33AC7F11BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11FBBA5A-8907-4510-941F-D33AC7F11BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11FBBA5A-8907-4510-941F-D33AC7F11BCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE442A5A-B41F-4795-94F4-A9F33EC25D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE442A5A-B41F-4795-94F4-A9F33EC25D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE442A5A-B41F-4795-94F4-A9F33EC25D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE442A5A-B41F-4795-94F4-A9F33EC25D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83CFC5F-297D-4441-8829-F0506EF7B737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83CFC5F-297D-4441-8829-F0506EF7B737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83CFC5F-297D-4441-8829-F0506EF7B737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83CFC5F-297D-4441-8829-F0506EF7B737}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

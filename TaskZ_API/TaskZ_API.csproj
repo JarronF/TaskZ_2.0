@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TaskZ_Application\TaskZ_Application.csproj" />
     <ProjectReference Include="..\TaskZ_Core\TaskZ_Core.csproj" />
-    <ProjectReference Include="..\TaskZ_DataAccess\TaskZ_DataAccess.csproj" />
+    <ProjectReference Include="..\TaskZ_Data\TaskZ_Data.csproj" />
   </ItemGroup>
 
 </Project>

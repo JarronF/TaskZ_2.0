@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskZ_Application.Interfaces;
 
-namespace TaskZ_DataAccess
+namespace TaskZ_Data
 {
     public class UnitOfWork : IUnitOfWork
     {

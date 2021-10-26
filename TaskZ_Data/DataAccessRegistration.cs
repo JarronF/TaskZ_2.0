@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskZ_Application.Interfaces;
-using TaskZ_DataAccess.Repositories;
+using TaskZ_Data.Internal.DataAccess;
+using TaskZ_Data.Repositories;
 
-namespace TaskZ_DataAccess
+namespace TaskZ_Data
 {
     public static class DataAccessRegistration
     {
@@ -11,6 +12,7 @@ namespace TaskZ_DataAccess
             services.AddTransient<ITaskItemRepository, TaskItemRepository>();
             services.AddTransient<ITaskCommentRepository, TaskCommentRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
         }
     }
 }

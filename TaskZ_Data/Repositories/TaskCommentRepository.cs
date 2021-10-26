@@ -9,28 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskZ_Application.Interfaces;
 using TaskZ_Core.Entities;
-using TaskZ_DataAccess.Utilities;
+using TaskZ_Data.Internal.DataAccess;
 
-namespace TaskZ_DataAccess.Repositories
+namespace TaskZ_Data.Repositories
 {
     public class TaskCommentRepository : ITaskCommentRepository
     {
-        private readonly IConfiguration _config;
-        public TaskCommentRepository(IConfiguration config)
+        private readonly ISqlDataAccess _data;
+        public TaskCommentRepository(ISqlDataAccess data)
         {
-            _config = config;
-        }
-        private IDbConnection Connection
-        {
-            get
-            {
-                return DatabaseHelper.GetConnection("TaskZ_Data", _config);
-            }
+            _data = data;
         }
 
         public Task<int> AddAsync(TaskComment entity)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
         }
 
         public Task<int> DeleteAsync(int id)
@@ -38,7 +31,7 @@ namespace TaskZ_DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TaskComment>> GetAllAsync()
+        public async Task<List<TaskComment>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
